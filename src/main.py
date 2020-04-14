@@ -1,31 +1,17 @@
-from datetime import datetime, timedelta
-from helpers import helpers
 from config import config
-import os
-from iexfinance.stocks import Stock, get_historical_data
+from helpers import logger
+from simulations import simulation1
+from services.alpaca import alpaca
 from services.iex import iex
+from datetime import datetime
+from services.alpaca.orders import short
 
-def getAppleQuote():
-    apple_stock = Stock("AAPL", token=auth_token)
-    return apple_stock.get_quote()
+#alpaca.sellMarketOrder("AMZN")
+# dateToPrint = datetime(2020, 4, 9)
+# logger.printToFile(iex.getHistoricalIntradayByMinute("AAPL", dateToPrint), dateToPrint.strftime("%Y-%m-%d") + ".txt")
 
-def getAppleBalanceSheet():
-    apple_stock = Stock("AAPL", token=auth_token)
-    return apple_stock.get_balance_sheet()
-
-def getAppleCashFlow():
-    apple_stock = Stock("AAPL", token=auth_token)
-    return apple_stock.get_cash_flow()
-
-def getStockDifferenceFromWeekAgo(ticker):
-    one_week = datetime.timedelta(days=7)
-    right_now = datetime.datetime.now()
-    one_week_ago = right_now - one_week
-    currentStock = Stock(ticker, token=auth_token)
-    oldStock = get_historical_data(ticker, one_week_ago, close_only=True)
-    print(currentStock)
-    print(oldStock)
-
-iex_auth_token = os.environ["IEXAuthToken"]
-print()
-helpers.printToFile(iex.getAppleQuote())
+#intraday_data = iex.getHistoricalIntradayByMinute("AAPL", datetime(2020, 4, 9))
+#print(intraday_data)
+# simulation1.run()
+short.short("PG")
+print("hello world")
