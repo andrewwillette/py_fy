@@ -28,7 +28,8 @@ def getStockDifferenceFromWeekAgo(ticker):
 # prints stock quote price continuously so to witness the update rate
 def testFrameRate(ticker):
     while True:
-        print(Stock(ticker, token=iex_auth_token).get_quote())
+        print("current time is " + datetime.now().strftime("%H %M %S %f"))
+        print(Stock(ticker).get_price())
 
 def getHistoricalIntradayByMinute(ticker, day):
     return get_historical_intraday(ticker, day)

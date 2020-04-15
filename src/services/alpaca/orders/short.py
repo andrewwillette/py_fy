@@ -1,7 +1,7 @@
 from services.alpaca.alpaca import api
 import time
 
-def short(ticker):
+def shortTheClose(ticker):
     # Submit a market order to open a short position of one share
     order = api.submit_order(ticker, 1, 'sell', 'market', 'day')
     print("Market order submitted.")
@@ -22,4 +22,4 @@ def short(ticker):
     # Check on our position
     position = api.get_position(ticker)
     if int(position.qty) < 0:
-        print(f'Short position open for {ticker}')
+        print(f'Shorting the close position open for {ticker}')

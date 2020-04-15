@@ -42,3 +42,6 @@ def sellMarketOrder(ticker):
 
 def getTickerPosition(ticker):
     return api.get_position(ticker)
+
+def getTickerPrice(ticker):
+    return "not implemented yet"
