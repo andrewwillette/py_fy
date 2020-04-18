@@ -1,18 +1,7 @@
 from iexfinance.stocks import Stock, get_historical_intraday
 import os
 from datetime import datetime, timedelta
-
-def getAppleQuote():
-    apple_stock = Stock("AAPL")
-    return apple_stock.get_quote()
-
-def getAppleBalanceSheet():
-    apple_stock = Stock("AAPL")
-    return apple_stock.get_balance_sheet()
-
-def getAppleCashFlow():
-    apple_stock = Stock("AAPL")
-    return apple_stock.get_cash_flow()
+from iexfinance.refdata import get_iex_symbols
 
 def getQuote(ticker):
     return Stock(ticker).get_quote()
@@ -36,3 +25,9 @@ def getHistoricalIntradayByMinute(ticker, day):
 
 def getCurrentPrice(ticker):
     return Stock(ticker).get_price()
+
+def getBalanceSheet(ticker):
+    return Stock(ticker).get_balance_sheet()
+
+def getAllTickers():
+    return get_iex_symbols()

@@ -11,5 +11,15 @@ class Historical_Intraday(Base):
     intraday_data = Column(JSON)
     
     def __repr__(self):
-        return "<Historical_Intraday(date='{}', intraday_by_minute={})>"\
-                .format(self.date, self.intraday_by_minute)
+        return "<Historical_Intraday(date='{}', ticker='{}', intraday_data={})>"\
+                .format(self.date, self.ticker, self.intraday_data)
+
+class Balance_Sheet(Base):
+    __tablename__ = 'Balance_Sheet'
+    id = Column(Integer, primary_key=True)
+    ticker = Column(String)
+    balance_sheet = Column(JSON)
+    
+    def __repr__(self):
+        return "<Balance_Sheet(ticker='{}', balance_sheet={})>"\
+                .format(self.ticker, self.balance_sheet)

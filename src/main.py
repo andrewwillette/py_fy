@@ -1,5 +1,5 @@
 from config import config
-from helpers import logger
+from helpers import logger, time
 from simulations import simulation1
 from services.alpaca import alpaca
 from services.iex import iex
@@ -8,7 +8,8 @@ from services.alpaca.orders import short
 from services.newsapi import newsapi
 from database import crud
 from database.helpers import helpers
-from database import historical_intraday
+from database import historical_intraday, balance_sheet
+from visualization import historical_intraday_graphs
 import calendar
 
 #alpaca.sellMarketOrder("AMZN")
@@ -21,11 +22,15 @@ import calendar
 # logger.printToFile(iex.testFrameRate("AMD"), "amdSample.txt")
 #short.shortTheClose("JPM")
 
-# crud.clearDatabase()
+#historical_intraday.saveIntradayDataYear("AMD", 2019)
 # crud.initializeFromModels()
+# balance_sheet.saveBalanceSheet("AMD")
+if __name__ == "__main__":
+    # execute only if run as a script
+    historical_intraday_graphs.volumeByMinuteHistogram("AMD", datetime(2020, 3, 13))
 
-month = calendar.month(2020,4)
-historical_intraday.saveIntradayDataMonth("AMD", month)
+
+
 # data = iex.getHistoricalIntradayByMinute("AMD", datetime(2020,4,14))
 # print('date is ')
 # print(datetime(2020,4,14))
