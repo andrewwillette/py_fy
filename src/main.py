@@ -8,7 +8,7 @@ from services.alpaca.orders import short
 from services.newsapi import newsapi
 from database import crud
 from database.helpers import helpers
-from database import historical_intraday, balance_sheet
+from database import historical_intraday, balance_sheet, historical_daily
 from visualization import historical_intraday_graphs
 import calendar
 
@@ -23,12 +23,13 @@ import calendar
 #short.shortTheClose("JPM")
 
 #historical_intraday.saveIntradayDataYear("AMD", 2019)
-# crud.initializeFromModels()
+#crud.initializeFromModels()
 # balance_sheet.saveBalanceSheet("AMD")
-if __name__ == "__main__":
+# if __name__ == "__main__":
     # execute only if run as a script
-    historical_intraday_graphs.volumeByMinuteHistogram("AMD", datetime(2020, 3, 13))
-
+# historical_intraday.saveIntradayDataDay("AMD", datetime(2020, 4, 17))
+# historical_intraday_graphs.priceByMinuteLineGraph("AMD", datetime(2020, 4, 17))
+print(historical_daily.getByTickerAndDay("JPM", 2018))
 
 
 # data = iex.getHistoricalIntradayByMinute("AMD", datetime(2020,4,14))

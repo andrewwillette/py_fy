@@ -15,6 +15,8 @@ Provides user with real-time news releases
 Provides user with some general data visualization queries
     Per stock:
         Show quote price by minute per day
+          Done
         Show quote price by day for month
         Show quote price by month for year
         Show volume over day
+          Done

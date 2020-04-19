@@ -14,6 +14,17 @@ class Historical_Intraday(Base):
         return "<Historical_Intraday(date='{}', ticker='{}', intraday_data={})>"\
                 .format(self.date, self.ticker, self.intraday_data)
 
+class Historical_Daily(Base):
+    __tablename__ = 'Historical_Daily'
+    id = Column(Integer, primary_key=True)
+    date = Column(String)
+    ticker = Column(String)
+    data = Column(JSON)
+    
+    def __repr__(self):
+        return "<Historical_Daily(date='{}', ticker='{}', data={})>"\
+                .format(self.date, self.ticker, self.data)
+
 class Balance_Sheet(Base):
     __tablename__ = 'Balance_Sheet'
     id = Column(Integer, primary_key=True)
