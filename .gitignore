@@ -4,3 +4,4 @@ dist/*
 !dist/graphs/.gitkeep
 .vscode
 .idea
+tags

@@ -34,3 +34,11 @@ class Balance_Sheet(Base):
     def __repr__(self):
         return "<Balance_Sheet(ticker='{}', balance_sheet={})>"\
                 .format(self.ticker, self.balance_sheet)
+
+class IexTicker(Base):
+    __tablename__ = 'Iex_Ticker'
+    ticker = Column(String, primary_key=True)
+    
+    def __repr__(self):
+        return "<Iex_Ticker(ticker='{}')>"\
+                .format(self.ticker)

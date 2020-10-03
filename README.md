@@ -16,7 +16,22 @@ Provides user with some general data visualization queries
     Per stock:
         Show quote price by minute per day
           Done
-        Show quote price by day for month
         Show quote price by month for year
+          Done
         Show volume over day
           Done
+
+Instructions to Run Queries :
+
+Get most recent price of TICKER : 
+    TICKER --current
+
+Generate graphs in dist/ folder 
+
+Get daily graph of TICKER :
+    TICKER --graph-daily
+Get monthly graph of TICKER :
+    TICKER --graph-monthly
+Get yearly graph of TICKER :
+    TICKER --graph-yearly
+

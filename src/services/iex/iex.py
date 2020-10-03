@@ -17,7 +17,10 @@ def testFrameRate(ticker):
         print("current time is " + datetime.now().strftime("%H %M %S %f"))
         print(Stock(ticker).get_price())
 
-def getHistoricalIntradayByMinute(ticker, day):
+def getHistoricalIntradayByMinute(ticker, day=None):
+    print("ticker is " + ticker)
+    print("day is ")
+    print(day)
     return get_historical_intraday(ticker, day)
 
 def getCurrentPrice(ticker):

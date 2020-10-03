@@ -28,11 +28,11 @@ def getByTickerAndDay(ticker,day):
         )
         ).all()
 
-def getByTickerAndDay(ticker,year):
+def getByTickerAndYear(ticker,year):
     s = crud.Session()
     return s.query(models.Historical_Daily).filter(
         and_(
             models.Historical_Daily.ticker == ticker,
-            datetime.strptime(models.Historical_Daily.date, '%Y-%m-%d').year == year
+            models.Historical_Daily.date.like("%" + str(year) + "%")
         )
         ).all()
