@@ -12,23 +12,23 @@ Provided just the TICKER, will output various information regarding the stock.
 
 -gp, --graphprice DATE_RANGE
 
-    Generates a graph of TICKER prices in DATE_RANGE 
-
+    - Generates a graph of TICKER prices in DATE_RANGE 
+    
 -gv, --graphvolume DATE_RANGE
 
-    Generates a graph of TICKER trading volumes in DATE_RANGE
+    - Generates a graph of TICKER trading volumes in DATE_RANGE
 
 -t, --trade
 
-    Tries to make smart decisions in the Alpaca paper trading environment. Outputs its dealings to the logs file.
+    - Tries to make smart decisions in the Alpaca paper trading environment. Outputs its dealings to the logs file.
 
 -fv, --findvalue
 
-    Tries to find stocks of value. Logs stocks of interest and reasons for interest.
+    - Tries to find stocks of value. Logs stocks of interest and reasons for interest.
 
 -h, --help
 
-    Prints brief usage information.
+    - Prints brief usage information.
 
 ## ENVIRONMENT VARIABLES
 
