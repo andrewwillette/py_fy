@@ -4,7 +4,7 @@ py_fy.py — Generates textual and graphical financial data.
 
 ## SYNOPSIS
 
-`python py_fy.py TICKER [ -gp | --graphprice _daterange_ ] [ -gv | --graphvolume _daterange_ ] [ -t | --trade ] [ -fv | --findvalue ]`
+    python py_fy.py TICKER [ -gp | --graphprice _daterange_ ] [ -gv | --graphvolume _daterange_ ] [ -t | --trade ] [ -fv | --findvalue ]
 
 ## DESCRIPTION
 
@@ -12,7 +12,7 @@ Provided just the TICKER, will output various information regarding the stock.
 
 -gp, --graphprice DATE_RANGE
 
-    Gnerates a graph of TICKER prices in DATE_RANGE 
+    Generates a graph of TICKER prices in DATE_RANGE 
 
 -gv, --graphvolume DATE_RANGE
 
