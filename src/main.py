@@ -12,35 +12,24 @@ from database import historical_intraday, balance_sheet, historical_daily, iex_t
 from visualization import historical_intraday_graphs, historical_daily_graphs
 import calendar
 import sys
-
+import dateparser
+import argparse
 #TODO: Parse ticker arg and check if valid ticker
 
-if("--current" in sys.argv):
-    print(iex.getCurrentPrice(sys.argv[1]))
-if("--graph-daily" in sys.argv):
-    historical_intraday_graphs.priceByMinuteLineGraph(sys.argv[1]) 
-if("--graph-monthly" in sys.argv):
-    historical_daily_graphs.closingPriceOverYearLineGraph()
-#alpaca.sellMarketOrder("AMZN")
-# dateToPrint = datetime(2020, 4, 9)
-# logger.printToFile(iex.getHistoricalIntradayByMinute("AAPL", dateToPrint), dateToPrint.strftime("%Y-%m-%d") + ".txt")
+parser = argparse.ArgumentParser(description='Process financial information')
+parser.add_argument('ticker', help="The stock symbol to analyze.")
+parser.add_argument('--graphdaily', help="Generate a graph for the stock on the given day")
+parser.add_argument('--currentprice', action='store_true', help="Get the current price of the stock")
+args = parser.parse_args()
 
-#intraday_data = iex.getHistoricalIntradayByMinute("AAPL", datetime(2020, 4, 9))
-#print(intraday_data)
-# simulation1.run()
-# logger.printToFile(iex.testFrameRate("AMD"), "amdSample.txt")
-#short.shortTheClose("JPM")
+if(args.graphdaily):
+    parsedDate = dateparser.parse(args.graphdaily)
+    if (parsedDate.weekday() < 5):
+        historical_intraday_graphs.priceByMinuteLineGraph(args.ticker, parsedDate)
+    else:
+        print("Provided date is not a weekday, the day was: " + parsedDate.strftime("%A"))
 
-#historical_intraday.saveIntradayDataYear("AMD", 2019)
-#crud.initializeFromModels()
-# balance_sheet.saveBalanceSheet("AMD")
-# if __name__ == "__main__":
-    # execute only if run as a script
-# historical_intraday.saveIntradayDataDay("AMD", datetime(2020, 4, 17))
-# historical_intraday_graphs.priceByMinuteLineGraph("AMD", datetime(2020, 4, 17))
-#iex_ticker.saveAllIexTickers()
+if(args.currentprice):
+    print(iex.getCurrentPrice(args.ticker))
+    print('got current price')
 
-# data = iex.getHistoricalIntradayByMinute("AMD", datetime(2020,4,14))
-# print('date is ')
-# print(datetime(2020,4,14))
-# print(data)

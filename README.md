@@ -26,12 +26,7 @@ Instructions to Run Queries :
 Get most recent price of TICKER : 
     TICKER --current
 
-Generate graphs in dist/ folder 
-
-Get daily graph of TICKER :
-    TICKER --graph-daily
-Get monthly graph of TICKER :
-    TICKER --graph-monthly
-Get yearly graph of TICKER :
-    TICKER --graph-yearly
+Generate daily graph of TICKER :
+date must be of form yyyy, yyyy/[m]m, or yyyy/[m]m/[d]d
+    TICKER --graph date
 
