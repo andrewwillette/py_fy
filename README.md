@@ -1,22 +1,16 @@
-% PY_FY(1) Version 1.0
-
-NAME
-====
+### PY_FY Version 1.0
 
 **py_fy.py** — Generates textual and graphical financial data. 
 
-SYNOPSIS
-========
+## SYNOPSIS
 
-| **python py_fy.py** TICKER \[**-gp**|**--graphprice** _daterange_] \[**-gv**|**--graphvolume** _daterange_]
+`python py_fy.py TICKER [ -gp | --graphprice _daterange_ ] [ -gv | --graphvolume _daterange_ ]`
 
-DESCRIPTION
-===========
+## DESCRIPTION
 
 Generates useful information regarding stocks, logging both text and graphs as requested.
 
-Options
--------
+## Options
 
 -h, --help
 
@@ -32,30 +26,19 @@ Options
 
 -t, --trade
 
-:   Tries to make some smart decisions in the Alpaca paper trading environment. Outputs its dealings to the logs file.
+:   Tries to make smart decisions in the Alpaca paper trading environment. Outputs its dealings to the logs file.
 
-ENVIRONMENT VARIABLES
-===========
+## ENVIRONMENT VARIABLES
 
-** IEX_TOKEN **
-: Required
-: API Token for making calls to iex cloud services, the store of financial information.
-See [here](https://iexcloud.io) for receiving access.
+Variable | Required | Description
+------------ | ------------- | -------------
+IEX_TOKEN | Yes | API Token for making calls to iex cloud services, the store of financial information. See [here](https://iexcloud.io) for receiving access. 
+APCA_API_BASE_URL | If running with --trade argument | See [here](https://app.alpaca.markets/paper) for info regarding alpaca API connections.
+APCA_API_KEY_ID | If running with --trade argument | See [here](https://app.alpaca.markets/paper) for info regarding alpaca API connections.
+APCA_API_SECRET_KEY | If running with --trade argument | See [here](https://app.alpaca.markets/paper) for info regarding alpaca API connections. 
+PYFY_GRAPH_DIR | No | Location to download generated graphs. Defaults to py_fy/dist/graphs
 
-** PY_FY_DOWNLOAD_DIR **
-:  Optional
-:  Location to download generated graphs. If unspecifed, defaults to 'py_fy/dist' 
-
-** APCA_API_BASE_URL ** 
-:   Required for trading
-:   See [here](https://app.alpaca.markets/paper) for info regarding alpaca API connections.
-** APCA_API_KEY_ID ** 
-:   Required for trading.
-** APCA_API_SECRET_KEY ** 
-:   Required for trading.
-
-AUTHOR
-======
+## AUTHOR
 
 Andrew Willette <willette.andrew1846@gmail.com>
 
