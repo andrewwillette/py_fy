@@ -1,32 +1,61 @@
-Capabilities
+% PY_FY(1) Version 1.0
 
-Provides user access to historical and realtime stock information
-  Iex Python API delivers real time and historical stock data. [PyPi reference](https://pypi.org/project/iexfinance/)
-  Local postgreSql server which can save this data for more complex tasks.
+NAME
+====
 
-Provides user with 
-  Current available tables are
-    historical_intraday
-    balance_sheet
+**py_fy.py** — Generates textual and graphical financial data. 
 
-Provides user with real-time news releases
-  newsapi python solution. [reference](https://newsapi.org/docs/client-libraries/python)
+SYNOPSIS
+========
 
-Provides user with some general data visualization queries
-    Per stock:
-        Show quote price by minute per day
-          Done
-        Show quote price by month for year
-          Done
-        Show volume over day
-          Done
+| **python py_fy.py** TICKER \[**-gp**|**--graphprice** _daterange_] \[**-gv**|**--graphvolume** _daterange_]
 
-Instructions to Run Queries :
+DESCRIPTION
+===========
 
-Get most recent price of TICKER : 
-    TICKER --current
+Generates useful information regarding stocks, logging both text and graphs as requested.
 
-Generate daily graph of TICKER :
-date must be of form yyyy, yyyy/[m]m, or yyyy/[m]m/[d]d
-    TICKER --graph date
+Options
+-------
+
+-h, --help
+
+:   Prints brief usage information.
+
+-gp, --graphprice DATE_RANGE
+
+:   Generates a graph of TICKER prices in DATE_RANGE 
+
+-gv, --graphvolume DATE_RANGE
+
+:   Generates a graph of TICKER trading volumes in DATE_RANGE
+
+-t, --trade
+
+:   Tries to make some smart decisions in the Alpaca paper trading environment. Outputs its dealings to the logs file.
+
+ENVIRONMENT VARIABLES
+===========
+
+** IEX_TOKEN **
+: Required
+: API Token for making calls to iex cloud services, the store of financial information.
+See [here](https://iexcloud.io) for receiving access.
+
+** PY_FY_DOWNLOAD_DIR **
+:  Optional
+:  Location to download generated graphs. If unspecifed, defaults to 'py_fy/dist' 
+
+** APCA_API_BASE_URL ** 
+:   Required for trading
+:   See [here](https://app.alpaca.markets/paper) for info regarding alpaca API connections.
+** APCA_API_KEY_ID ** 
+:   Required for trading.
+** APCA_API_SECRET_KEY ** 
+:   Required for trading.
+
+AUTHOR
+======
+
+Andrew Willette <willette.andrew1846@gmail.com>
 

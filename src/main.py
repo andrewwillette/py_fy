@@ -20,16 +20,20 @@ parser = argparse.ArgumentParser(description='Process financial information')
 parser.add_argument('ticker', help="The stock symbol to analyze.")
 parser.add_argument('--graphdaily', help="Generate a graph for the stock on the given day")
 parser.add_argument('--currentprice', action='store_true', help="Get the current price of the stock")
+parser.add_argument('--findundervalued', action='store_true', help="Scan stock information for interesting investments")
 args = parser.parse_args()
+
+print(iex.getQuote(args.ticker))
+ticker = args.ticker
+
+if(args.currentprice):
+    print("The current price of " + ticker + " is: "+ str(iex.getCurrentPrice(ticker)))
 
 if(args.graphdaily):
     parsedDate = dateparser.parse(args.graphdaily)
     if (parsedDate.weekday() < 5):
-        historical_intraday_graphs.priceByMinuteLineGraph(args.ticker, parsedDate)
+        historical_intraday_graphs.priceByMinuteLineGraph(ticker, parsedDate)
     else:
         print("Provided date is not a weekday, the day was: " + parsedDate.strftime("%A"))
 
-if(args.currentprice):
-    print(iex.getCurrentPrice(args.ticker))
-    print('got current price')
 

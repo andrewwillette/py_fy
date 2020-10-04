@@ -30,6 +30,7 @@ def priceByMinuteLineGraph(ticker, day=None):
         graph = volumeByMinuteSeries.plot.line()
         graph.set_xlabel("Time (in minutes)")
         graph.set_ylabel("Average Price")
+
         if(day==None):
             day = datetime.today()
         logger.writeGraphToFile(graph.get_figure(), "_".join([ticker, day.strftime("%Y-%m-%d"), "priceGraph"]))
