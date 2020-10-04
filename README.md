@@ -6,10 +6,6 @@
 
 `python py_fy.py TICKER [ -gp | --graphprice _daterange_ ] [ -gv | --graphvolume _daterange_ ]`
 
-## DESCRIPTION
-
-Generates useful information regarding stocks, logging both text and graphs as requested.
-
 ## Options
 
 -h, --help
