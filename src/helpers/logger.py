@@ -6,7 +6,7 @@ def writeToFile(toWrite, file):
         f.close()
 
 def writeToLog(toWrite):
-    with open(os.environ['absolute_log_location'] + "log", 'a') as f:
+    with open(os.environ['absolute_log_location'] + "debug.log", 'a') as f:
         print(toWrite, file=f)
         f.close()
 

@@ -11,16 +11,10 @@ def getHistoricalDataByYear(ticker, year):
     end = datetime((year+1), 1, 1)
     return get_historical_data(ticker, start, end)
 
-# prints stock quote price continuously so to witness the update rate
-def testFrameRate(ticker):
-    while True:
-        print("current time is " + datetime.now().strftime("%H %M %S %f"))
-        print(Stock(ticker).get_price())
+def getHistoricalDataByRange(ticker, start, end):
+    return get_historical_data(ticker, start, end)
 
 def getHistoricalIntradayByMinute(ticker, day=None):
-    print("ticker is " + ticker)
-    print("day is ")
-    print(day)
     return get_historical_intraday(ticker, day)
 
 def getCurrentPrice(ticker):
@@ -31,3 +25,9 @@ def getBalanceSheet(ticker):
 
 def getAllTickers():
     return get_iex_symbols()
+
+# prints stock quote price continuously so to witness the update rate
+def testFrameRate(ticker):
+    while True:
+        print("current time is " + datetime.now().strftime("%H %M %S %f"))
+        print(Stock(ticker).get_price())

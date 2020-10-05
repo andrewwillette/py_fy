@@ -1,7 +1,3 @@
-__pycache__
 dist/*
 !dist/.gitkeep
 !dist/graphs/.gitkeep
-.vscode
-.idea
-tags

@@ -1,4 +1,4 @@
-### PY_FY Version 1.0
+### PY_FY Version 0.1
 
 src/py_fy.py — Generates textual and graphical financial data. Capable of actively trading on the alpaca platform with custom-configured rules. 
 
