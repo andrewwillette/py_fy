@@ -16,9 +16,6 @@ parser.add_argument('-t', '--trade', action='store_true', help='Actively trade o
 parser.add_argument('-fv', '--findvalue', action='store_true', help='Scan stock information for interesting investments')
 args = parser.parse_args()
 
-print('parsed args is')
-print(args)
-
 ticker = args.ticker
 
 # TODO: Make ticker optional so trade and findvalue can be called without it
@@ -35,8 +32,6 @@ if(args.ticker):
     logger.writeToLog(iex.getQuote(args.ticker))
 
 if(args.price_dates):
-    print('graphprice args is')
-    print(args.graphprice)
     parsedDate = dateparser.parse(args.graphprice)
     if (parsedDate.weekday() < 5):
         graphs.byMinuteIntradayLineGraph(ticker, 'average', parsedDate)
@@ -44,15 +39,11 @@ if(args.price_dates):
         print('Provided date is not a weekday, the day was: ' + parsedDate.strftime('%A'))
 
 if(args.volume_dates):
-    print('volume_dates len args is')
-    print(len(args.volume_dates))
     if(len(args.volume_dates) > 1):
-        print("passed multiple volume dates")
         parsedStartDate = dateparser.parse(args.volume_dates[0])
         parsedEndDate = dateparser.parse(args.volume_dates[1])
         graphs.valueOverRangeLineGraph(ticker, 'volume', parsedStartDate, parsedEndDate)
     else:
-        print("passed single volume date")
         parsedDate = dateparser.parse(args.volume_dates[0]) 
         if (parsedDate.weekday() < 5):
             graphs.byMinuteIntradayLineGraph(ticker, 'volume', parsedDate)
@@ -61,3 +52,6 @@ if(args.volume_dates):
 
 if(args.trade):
     print('trading...')
+
+if(args.findvalue):
+    print('finding value...')
