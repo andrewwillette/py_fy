@@ -3,7 +3,7 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from helpers import logger
+from helpers.logger import Logger
 
 def byMinuteIntradayLineGraph(ticker, yaxis, day=None):
     minutes_data = iex.getHistoricalIntradayByMinute(ticker, day)
@@ -17,7 +17,7 @@ def byMinuteIntradayLineGraph(ticker, yaxis, day=None):
         graph.set_ylabel(yaxis)
         if(day==None):
             day = datetime.today()
-        logger.writeGraphToFile(graph.get_figure(), "_".join([ticker, day.strftime("%Y-%m-%d"), yaxis, "graph"]))
+        Logger.writeGraphToFile(graph.get_figure(), "_".join([ticker, day.strftime("%Y-%m-%d"), yaxis, "graph"]))
     except Exception as ex:
         print("error generating graph for ticker:{}, yaxis:{}".format(ticker, yaxis))
         print (ex)
@@ -25,8 +25,8 @@ def byMinuteIntradayLineGraph(ticker, yaxis, day=None):
 def valueOverRangeLineGraph(ticker, value, start, end):
     dailyData = iex.getHistoricalDataByRange(ticker, start, end)
     print('here1, should log iex historvatl range')
-    logger.writeToLog('iex historical range data is')
-    logger.writeToLog(dailyData)
+    Logger.debug('iex historical range data is')
+    Logger.debug(dailyData)
     seriesData = {}
     for day, value in dailyData.items():
         print('day is')
@@ -37,7 +37,7 @@ def valueOverRangeLineGraph(ticker, value, start, end):
     graph = openingByDaySeries.plot.line()
     graph.set_xlabel("Day")
     graph.set_ylabel(value)
-    logger.writeGraphToFile(graph.get_figure(), "_".join([ticker, str(start), str(end), "Closing Price"]))
+    Logger.writeGraphToFile(graph.get_figure(), "_".join([ticker, str(start), str(end), "Closing Price"]))
 
 def closingPriceOverYearLineGraph(ticker, year):
     dailyData = historical_daily.getByTickerAndYear(ticker, year)
@@ -49,7 +49,7 @@ def closingPriceOverYearLineGraph(ticker, year):
     graph = openingByDaySeries.plot.line()
     graph.set_xlabel("Day")
     graph.set_ylabel("Closing Price")
-    logger.writeGraphToFile(graph.get_figure(), "_".join([ticker, str(year), "Closing Price"]))
+    Logger.writeGraphToFile(graph.get_figure(), "_".join([ticker, str(year), "Closing Price"]))
 
 def volumeOverYearLineGraph(ticker, year):
     dailyData = historical_daily.getByTickerAndYear(ticker, year)
@@ -61,4 +61,4 @@ def volumeOverYearLineGraph(ticker, year):
     graph = openingByDaySeries.plot.line()
     graph.set_xlabel("Day")
     graph.set_ylabel("Volume")
-    logger.writeGraphToFile(graph.get_figure(), "_".join([ticker, str(year), "Volume"]))
+    Logger.writeGraphToFile(graph.get_figure(), "_".join([ticker, str(year), "Volume"]))

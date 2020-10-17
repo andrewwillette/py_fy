@@ -14,4 +14,3 @@ def saveAllIexTickers():
         s.add(iex_ticker)
     s.commit()
     s.close()
-

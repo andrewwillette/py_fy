@@ -3,6 +3,19 @@ from sqlalchemy import Column, Integer, String, Date, JSON
 
 Base = declarative_base()
 
+class Orders(Base):
+    __tablename__ = 'Orders'
+    id = Column(Integer, primary_key=True)
+    symbol = Column(String)
+    alpacaId = Column(String)
+    orderType = Column(String) 
+    orderData = Column(JSON)
+    orderStatus = Column(String)
+    
+    def __repr__(self):
+        return "<Order(symbol='{}', alpacaId='{}', orderType='{}', orderData='{}', orderStatus='{}')>"\
+                .format(self.symbol, self.alpacaId, self.orderType, self.orderData, self.orderStatus)
+
 class Historical_Intraday(Base):
     __tablename__ = 'Historical_Intraday'
     id = Column(Integer, primary_key=True)

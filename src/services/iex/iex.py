@@ -1,5 +1,6 @@
 from iexfinance.stocks import Stock, get_historical_intraday, get_historical_data
 import os
+from helpers.logger import Logger
 from datetime import datetime, timedelta
 from iexfinance.refdata import get_iex_symbols
 
@@ -15,7 +16,12 @@ def getHistoricalDataByRange(ticker, start, end):
     return get_historical_data(ticker, start, end)
 
 def getHistoricalIntradayByMinute(ticker, day=None):
-    return get_historical_intraday(ticker, day)
+    historicalIntradayData = {}
+    try:
+        historicalIntradayData = get_historical_intraday(ticker, day)
+    except Exception as ex:
+        Logger.error('Failed querying IEX historical intraday data for {}'.format(ticker))
+    return historicalIntradayData
 
 def getCurrentPrice(ticker):
     return Stock(ticker).get_price()

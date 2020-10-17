@@ -2,7 +2,7 @@ from services.iex import iex
 from database.helpers import helpers
 from database import crud
 from database import models
-from helpers import time, logger
+from helpers import time
 from sqlalchemy import and_
 from datetime import datetime
 
