@@ -4,7 +4,7 @@ src/py_fy.py — Generates textual and graphical financial data. Capable of acti
 
 ## SYNOPSIS
 
-    python py_fy.py TICKER [ -gp | --graphprice _daterange_ ] [ -gv | --graphvolume _daterange_ ] [ -t | --trade ] [ -fv | --findvalue ]
+    python py_fy.py TICKER [ -s | --symbol SYMBOL] [ -gp | --graphprice DATE_RANGE ] [ -gv | --graphvolume DATE_RANGE ] [ -t | --trade ] [ -fv | --findvalue ]
 
 ## DESCRIPTION
 

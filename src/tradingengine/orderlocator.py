@@ -1,0 +1,2 @@
+class OrderLocator:
+    def getIncreasingStock()
