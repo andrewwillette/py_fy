@@ -1,4 +1,5 @@
 from services.iex import iex
+import math
 from helpers.logger import Logger
 from services.alpaca.alpaca import Alpaca
 import random
@@ -45,6 +46,10 @@ class BetaTrades:
             byMinuteData = iex.getHistoricalIntradayByMinute(stock)
             if(BetaTrades.isIncreasingConsecutively(stock, byMinuteData, 8)):
                 #make bracket order
-                Logger.all('quickTradeOne triggering bracket trade on {} at current price {}, limit '.format(stock, currentPrice, ))
-                Logger.debug('making order on stock {}'.format(stock))
+                askprice = Alpaca.getAskPrice(stock)
+                take_price = askprice * 1.02
+                stop_price = askprice * .993
+                quantity = math.floor(totalToSpend/askprice)
+                Alpaca.buyMarketBracketOrder(stock, take_price, stop_price, quantity)
+                Logger.all('quickTradeOne triggering bracket trade on {} at ask price {}, take price {}, stop price {}'.format(stock, askprice, take_price, stop_price))
                 investedStocks += 1

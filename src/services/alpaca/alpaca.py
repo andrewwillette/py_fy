@@ -4,10 +4,17 @@ api = tradeapi.REST()
 account = api.get_account()
 
 class Alpaca:
+
+    """
+    Make a bracket order on a given stock
+    stock : the stock to make order on
+    take_limit : what we want, the price to sell stock once it gets that high
+    stop_loss : a safety net to get out of the trade if it goes too far south
+    """
     @staticmethod
-    def buyMarketBracketOrder(ticker, take_limit, stop_limit, quantity):
+    def buyMarketBracketOrder(stock, take_limit, stop_loss, quantity):
         api.submit_order(
-            symbol=ticker,
+            symbol=stock,
             side='buy',
             type='market',
             qty=quantity,
@@ -17,7 +24,7 @@ class Alpaca:
                 limit_price=take_limit
             ),
             stop_loss=dict(
-                stop_price=stop_limit
+                stop_price=stop_loss
             )
         )
         return True
@@ -49,8 +56,9 @@ class Alpaca:
         return api.get_position(ticker)
 
     @staticmethod
-    def getTickerPrice(ticker):
-        return "not implemented yet"
+    def getAskPrice(ticker):
+        ask_price = api.get_last_quote(ticker)._raw.get('askprice')
+        return ask_price
 
     @staticmethod
     def listPositions():

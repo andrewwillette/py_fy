@@ -3,6 +3,7 @@ from helpers.logger import Logger
 from helpers import time
 from services.iex import iex
 from services.alpaca.alpaca import Alpaca
+from database import crud
 from datetime import datetime
 from visualization import graphs 
 from tradingengine.engine import Engine
@@ -23,6 +24,8 @@ parser.add_argument('-v', '--verbosity', action='count', default=0, help='Adjust
 args = parser.parse_args()
 
 os.environ['log_level'] = str(args.verbosity)
+
+crud.initializeFromModels()
 
 if(args.symbol):
     symbol = args.symbol
@@ -63,6 +66,7 @@ if(args.listpositions):
 
 if(args.trade):
     totalToTrade = 20000
+    # tickerquote = Alpaca.getTickerPrice("TSLA")
     engine = Engine(totalToTrade)
     engine.run()
 
