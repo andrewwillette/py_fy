@@ -1,4 +1,4 @@
-import math
+
 from queue import Queue
 
 from helpers.logger import Logger
@@ -8,7 +8,7 @@ from services.iex import iex
 
 class BetaTrades:
     @staticmethod
-    def isIncreasingConsecutively(symbol, iexHistoricalData, repeats):
+    def is_increasing_consecutively(symbol, iexHistoricalData, repeats):
         Logger.debug('analyzing {} for {} repeated increasing minutes'.format(symbol, repeats))
         chainLength = 0
         failedChains = 0
@@ -37,22 +37,22 @@ class BetaTrades:
         return False
 
     @staticmethod
-    def quickTradeOne(totalToSpend, stockQueue):
-        Logger.debug('Calling quickTradeOne with totalToSpend : {}'.format(totalToSpend))
+    def quick_trade_one(totalToSpend, stockQueue):
+        Logger.debug('Calling quick_trade_one with totalToSpend : {}'.format(totalToSpend))
         spent = 0
         investedStocks = 0
         # while (spent < totalToSpend):
         while(spent < totalToSpend):
             stock = stockQueue.get().get('symbol')
             byMinuteData = iex.getHistoricalIntradayByMinute(stock)
-            if(BetaTrades.isIncreasingConsecutively(stock, byMinuteData, 8)):
+            if(BetaTrades.is_increasing_consecutively(stock, byMinuteData, 8)):
                 #make bracket order
                 askprice = Alpaca.getAskPrice(stock)
                 take_price = askprice * 1.02
                 stop_price = askprice * .988
                 quantity = math.floor(totalToSpend/askprice)
-                Alpaca.buyMarketBracketOrder(stock, take_price, stop_price, quantity)
-                Logger.all('quickTradeOne triggering bracket trade on {} at ask price {}, take price {}, stop price {}'.format(stock, askprice, take_price, stop_price))
+                Alpaca.buy_market_bracket_order(stock, take_price, stop_price, quantity)
+                Logger.all('quick_trade_one triggering bracket trade on {} at ask price {}, take price {}, stop price {}'.format(stock, askprice, take_price, stop_price))
                 investedStocks += 1
 
 
@@ -61,7 +61,7 @@ class BetaTrades:
     TODO: Define different types of short positions
     '''
     @staticmethod
-    def shortTheDying(totalToSpend):
+    def short_the_dying(totalToSpend):
         symbolsToShort = ["CERN"]
         # get all stocks
         stockQueue = Queue()
@@ -71,4 +71,4 @@ class BetaTrades:
 
         # so now we have queue of all stocks... we want to find most promising short...
 
-        #trades.shortOrder()
+        #trades.short_order()

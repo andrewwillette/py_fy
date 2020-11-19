@@ -2,18 +2,10 @@ import math
 
 from services.alpaca.alpaca import Alpaca, api
 
-
+# obscure trrades I don't know where to put anywhere else at this time...
 class Trades:
     @staticmethod
-    def bracketOrder(symbol, quantityDollars):
-        askprice = Alpaca.getAskPrice(symbol)
-        take_price = askprice * 1.02
-        stop_price = askprice * .993
-        quantity = math.floor(quantityDollars/askprice)
-        Alpaca.buyMarketBracketOrder(symbol, take_price, stop_price, quantity)
-
-    @staticmethod
-    def shortOrder(symbol, quantityDollars):
+    def short_order(symbol, quantityDollars):
         # Submit a market order to open a short position of one share
         order = api.submit_order(symbol, 1, 'sell', 'market', 'day')
         print("Market order submitted.")

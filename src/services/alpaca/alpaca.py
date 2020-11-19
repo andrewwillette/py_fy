@@ -12,7 +12,7 @@ class Alpaca:
     stop_loss : a safety net to get out of the trade if it goes too far south
     """
     @staticmethod
-    def buyMarketBracketOrder(stock, take_limit, stop_loss, quantity):
+    def buy_market_bracket_order(stock, take_limit, stop_loss, quantity):
         api.submit_order(
             symbol=stock,
             side='buy',
@@ -30,7 +30,7 @@ class Alpaca:
         return True
 
     @staticmethod
-    def buyMarketOrder(ticker):
+    def buy_market_bracket_order(ticker):
         api.submit_order(
             symbol=ticker,
             qty=1,

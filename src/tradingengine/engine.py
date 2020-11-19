@@ -15,7 +15,7 @@ class Engine():
         self.budget = budget 
 
     @staticmethod
-    def testingThreads(integer):
+    def testing_threads(integer):
         while(True):
             print("running thread number {}".format(integer))
 
@@ -27,7 +27,7 @@ class Engine():
             stockQueue.put(stock)
         threads = []
         for i in range(threadCount):
-            t = threading.Thread(target=BetaTrades.quickTradeOne, args=[budgetPerThread, stockQueue])
+            t = threading.Thread(target=BetaTrades.quick_trade_one, args=[budgetPerThread, stockQueue])
             # t = threading.Thread(target=callme, args=[i])
             threads.append(t)
             t.start()
