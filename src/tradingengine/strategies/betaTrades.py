@@ -1,9 +1,10 @@
-from services.iex import iex
 import math
+from queue import Queue
+
 from helpers.logger import Logger
 from services.alpaca.alpaca import Alpaca
-import random
-import threading
+from services.iex import iex
+
 
 class BetaTrades:
     @staticmethod
@@ -48,8 +49,26 @@ class BetaTrades:
                 #make bracket order
                 askprice = Alpaca.getAskPrice(stock)
                 take_price = askprice * 1.02
-                stop_price = askprice * .993
+                stop_price = askprice * .988
                 quantity = math.floor(totalToSpend/askprice)
                 Alpaca.buyMarketBracketOrder(stock, take_price, stop_price, quantity)
                 Logger.all('quickTradeOne triggering bracket trade on {} at ask price {}, take price {}, stop price {}'.format(stock, askprice, take_price, stop_price))
                 investedStocks += 1
+
+
+    '''
+    Scans iex, finds stocks that are both overvalues and falling and opens short positions on them
+    TODO: Define different types of short positions
+    '''
+    @staticmethod
+    def shortTheDying(totalToSpend):
+        symbolsToShort = ["CERN"]
+        # get all stocks
+        stockQueue = Queue()
+        for stock in iex.getAllTickers():
+            stockQueue.put(stock)
+
+
+        # so now we have queue of all stocks... we want to find most promising short...
+
+        #trades.shortOrder()
